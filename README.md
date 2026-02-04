@@ -65,181 +65,204 @@ La biblioteca **“LibroFácil”** necesita un programa en Python para gestiona
 
 ---
 
-# 🎓 Ejercicio 2: Sistema de Alumnos
 
-## Contexto
 
-Una academia necesita registrar alumnos y sus notas finales utilizando un archivo `alumnos.json`.
+# 📚 Guía rápida para el examen – Gestión de Biblioteca en Python
 
-## Requerimientos Funcionales
-
-1️⃣ **Cargar Datos**
-
-* Leer los datos desde `alumnos.json` al iniciar el programa.
-
-2️⃣ **Agregar Alumno**
-
-* Solicitar:
-
-  * Nombre (string)
-  * Edad (entero ≥ 0)
-  * Nota final (float entre 0 y 10)
-
-3️⃣ **Modificar Nota**
-
-* Buscar al alumno por nombre.
-* Permitir actualizar su nota final.
-
-4️⃣ **Mostrar Alumnos**
-
-* Listar todos los alumnos registrados.
-
-5️⃣ **Guardar y Salir**
-
-* Guardar los cambios en `alumnos.json`.
-
-## Requerimientos Técnicos
-
-* Lista de diccionarios
-* Validación de rangos numéricos
-* Manejo de excepciones con `try-except`
-* Uso exclusivo de la librería `json`
+Bro, esto es tu **chuleta legal** 😎. Léelo antes del examen y vas fino.
 
 ---
 
-# 🧑‍💼 Ejercicio 3: Control de Empleados
+## 🧠 Idea clave del ejercicio
 
-## Contexto
+El programa **gestiona un catálogo de libros** usando un archivo `libros.json`.
 
-La empresa **“SoftJobs”** desea administrar la información de sus empleados desde la consola, utilizando persistencia en un archivo `empleados.json`.
+👉 Todo gira alrededor de:
 
-## Requerimientos Funcionales
-
-1️⃣ **Cargar Empleados**
-
-* Leer datos desde `empleados.json`.
-
-2️⃣ **Agregar Empleado**
-
-* Solicitar:
-
-  * Nombre (string)
-  * Puesto (string)
-  * Salario (float ≥ 0)
-
-3️⃣ **Actualizar Salario**
-
-* Buscar empleado por nombre.
-* Permitir modificar su salario.
-
-4️⃣ **Mostrar Empleados**
-
-* Listar todos los empleados registrados.
-
-5️⃣ **Guardar y Salir**
-
-* Guardar los cambios realizados.
-
-## Requerimientos Técnicos
-
-* Lista de diccionarios
-* Manejo de errores de conversión (`ValueError`)
-* Manejo de `FileNotFoundError`
-* Menú interactivo con `while True`
+* Listas
+* Diccionarios
+* Archivos JSON
+* `try / except`
+* Menú con `while True`
 
 ---
 
-# 🧾 Ejercicio 4: Registro de Ventas
+## 📂 Estructura básica del archivo
 
-## Contexto
+```python
+import json
+```
 
-Una tienda necesita registrar sus ventas diarias y almacenarlas en un archivo `ventas.json`.
-
-## Requerimientos Funcionales
-
-1️⃣ **Cargar Ventas**
-
-* Leer datos desde `ventas.json`.
-
-2️⃣ **Registrar Venta**
-
-* Solicitar:
-
-  * Producto (string)
-  * Precio (float > 0)
-  * Cantidad (int > 0)
-
-3️⃣ **Mostrar Ventas**
-
-* Listar todas las ventas con el total calculado por producto.
-
-4️⃣ **Total General**
-
-* Mostrar el total general vendido.
-
-5️⃣ **Guardar y Salir**
-
-* Guardar los cambios en `ventas.json`.
-
-## Requerimientos Técnicos
-
-* Lista de diccionarios
-* Cálculos aritméticos básicos
-* Manejo de errores con `try-except`
-* Persistencia con `json.dump()`
+Siempre va primero. Sin esto, JSON no existe 😅.
 
 ---
 
-# 📇 Ejercicio 5: Agenda de Contactos
+## 1️⃣ Cargar el catálogo (MUY importante)
 
-## Contexto
+💡 Esto **SIEMPRE cae en el examen**.
 
-Se requiere una agenda digital en Python que permita almacenar contactos de forma persistente en `contactos.json`.
+```python
+try:
+    with open('libros.json') as archivo:
+        libros = json.load(archivo)
+except FileNotFoundError:
+    libros = []
+    print("Archivo no encontrado, se creó un catálogo vacío")
+```
 
-## Requerimientos Funcionales
+🔑 Qué recordar:
 
-1️⃣ **Cargar Contactos**
+* `try` → intenta abrir el archivo
+* `except FileNotFoundError` → si no existe
+* `libros = []` → empezamos vacío
 
-* Leer contactos desde `contactos.json`.
+📌 Frase mental para el examen:
 
-2️⃣ **Agregar Contacto**
-
-* Solicitar:
-
-  * Nombre (string)
-  * Teléfono (string)
-  * Email (string)
-
-3️⃣ **Editar Contacto**
-
-* Buscar contacto por nombre.
-* Permitir editar el número de teléfono.
-
-4️⃣ **Mostrar Contactos**
-
-* Listar todos los contactos registrados.
-
-5️⃣ **Guardar y Salir**
-
-* Guardar los cambios realizados.
-
-## Requerimientos Técnicos
-
-* Lista de diccionarios
-* Manejo de archivos con `with open()`
-* Manejo de excepciones
-* Menú interactivo por consola
+> *Si no hay archivo, no hay drama, creo la lista vacía.*
 
 ---
 
-## ✅ Buenas Prácticas Aplicadas
+## 2️⃣ Estructura de un libro (diccionario)
 
-* Separación clara de responsabilidades
-* Validación de datos ingresados por el usuario
-* Manejo adecuado de errores
-* Uso correcto de archivos JSON
-* Código legible, mantenible y escalable
+Cada libro es así:
+
+```python
+libro = {
+    "titulo": titulo,
+    "autor": autor,
+    "anio": anio,
+    "cantidad": cantidad
+}
+```
+
+Y se guarda con:
+
+```python
+libros.append(libro)
+```
+
+🧠 Truco:
+
+* **Lista de diccionarios** = catálogo completo
 
 ---
 
-🚀 **Este proyecto representa un conjunto de ejercicios completamente funcionales, tolerantes a errores y alineados con prácticas reales de desarrollo en Python.**
+## 3️⃣ Validaciones básicas
+
+Nunca guardes datos raros 👀:
+
+```python
+if anio < 0 or cantidad < 0:
+    print("Datos inválidos")
+else:
+    libros.append(libro)
+```
+
+📌 OJO en el examen:
+
+* `or` → cuando **uno solo** sea incorrecto
+* `and` → cuando **ambos** deban cumplirse
+
+---
+
+## 4️⃣ Mostrar el catálogo (opción 3 del menú)
+
+Forma básica (válida en examen):
+
+```python
+print(libros)
+```
+
+Forma pro (te da puntos extra 😏):
+
+```python
+print("\n--- CATÁLOGO ---")
+for libro in libros:
+    print(f"Título: {libro['titulo']}")
+    print(f"Autor: {libro['autor']}")
+    print(f"Año: {libro['anio']}")
+    print(f"Cantidad: {libro['cantidad']}")
+    print("-" * 20)
+```
+
+---
+
+## 5️⃣ Guardar cambios en el archivo (opción 4)
+
+🔥 ESTA ES CLAVE 🔥
+
+```python
+with open('libros.json', 'w') as archivo:
+    json.dump(libros, archivo, indent=4)
+print("Cambios guardados correctamente")
+```
+
+🧠 Memoriza:
+
+* `'w'` → escribir
+* `json.dump()` → guardar
+* `indent=4` → bonito (profe feliz)
+
+---
+
+## 6️⃣ Menú principal (estructura típica)
+
+```python
+while True:
+    print("1. Agregar libro")
+    print("2. Buscar libro")
+    print("3. Mostrar catálogo")
+    print("4. Guardar y salir")
+
+    opcion = input("Seleccione una opción: ")
+
+    if opcion == "1":
+        pass
+    elif opcion == "2":
+        pass
+    elif opcion == "3":
+        pass
+    elif opcion == "4":
+        break
+    else:
+        print("Opción inválida")
+```
+
+📌 En el examen:
+
+* El menú **SIEMPRE va en `while True`**
+* Salir = `break`
+
+---
+
+## 🧠 Chuleta mental express (último minuto)
+
+✔ JSON → `json.load()` / `json.dump()`
+✔ Archivo no existe → `try / except FileNotFoundError`
+✔ Catálogo → lista `[]`
+✔ Libro → diccionario `{}`
+✔ Menú → `while True`
+✔ Guardar → `'w'`
+
+---
+
+## 😎 Consejo final de pana
+
+Si te bloqueas en el examen:
+
+1. Escribe primero el `try / except`
+2. Luego el `while True`
+3. Después completas las opciones
+
+Eso ya te asegura **la mitad de los puntos** mínimo.
+
+---
+
+🔥 Si quieres, en el próximo mensaje te hago:
+
+* Un **ejercicio tipo examen**
+* O una **chuleta aún más corta** (1 página)
+
+Tú mandas, crack 💪
+
+
